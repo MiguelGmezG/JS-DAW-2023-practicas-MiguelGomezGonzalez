@@ -9,4 +9,3 @@ const array = (nArrayMin, nArrayMax) => {
 
 console.log(array(1, 30));
 console.log(array(1, 50));
-  
