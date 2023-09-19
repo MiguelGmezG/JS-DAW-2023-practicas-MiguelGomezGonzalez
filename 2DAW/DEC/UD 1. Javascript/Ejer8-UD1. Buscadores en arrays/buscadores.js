@@ -1,4 +1,4 @@
-const caracteres = ['a', 'b', 'c', 'd', 'e', 'f'];
+const caracteres = ['a', 'b', 'c', 'd', 'e', 'fffff'];
 const estaEnArray = caracteres.includes("c");
 console.log(`¿La letra c está en el array?` +estaEnArray);
 const elementoMenosDe5 = caracteres.find(elemento => elemento.length < 5);
