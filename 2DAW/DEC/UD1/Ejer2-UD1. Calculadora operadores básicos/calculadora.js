@@ -2,8 +2,8 @@ function calculadora() {
   var operacion = prompt(
     "Introduce el simbolo de la operacion que vamos a asignar: -+/*"
   );
-  numero1 = parseInt(prompt("Introduce el primer valor a sumar: "));
-  numero2 = parseInt(prompt("Introduce el segundo valor a sumar: "));
+  numero1 = parseInt(prompt("Introduce el primer valor: "));
+  numero2 = parseInt(prompt("Introduce el segundo valor: "));
   let resultado;
   if (operacion === "*") {
     resultado = numero1 * numero2;
@@ -20,7 +20,6 @@ function calculadora() {
           document.write(
             "La operacion no se puede realizar porque el simbolo de la operacion no es valido"
           );
-          return;
         }
       }
     }
