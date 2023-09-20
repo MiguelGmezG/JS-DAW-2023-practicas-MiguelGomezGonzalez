@@ -13,3 +13,6 @@ const saludamos = (nombre) => {
   }
 };
 console.log(saludamos("Miguel"));
+console.log(saludamos("Juan"));
+console.log(saludamos("David"));
+console.log(saludamos("Manolo"));
