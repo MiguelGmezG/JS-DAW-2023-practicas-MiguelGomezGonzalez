@@ -1,43 +1,46 @@
-function Empleado(nombre) {
-  this.nombre = nombre || "";
-  this.departamento = "Informático";
+class Empleado {
+  constructor(nombre = "") {
+    this.nombre = nombre;
+    this.departamento = "Informático";
+  }
 }
-function Director(nombre) {
-  Empleado.call(this, nombre);
-  this.informes = [];
+class Director extends Empleado {
+  constructor(nombre) {
+    super(nombre);
+    this.informes = [];
+  }
 }
-Director.prototype = new Empleado();
-Director.prototype.constructor = Director;
-function Trabajador(nombre) {
-  Empleado.call(this, nombre);
-  this.proyectos = [];
+class Trabajador extends Empleado {
+  constructor(nombre) {
+    super(nombre);
+    this.proyectos = [];
+  }
 }
-Trabajador.prototype = new Empleado();
-Trabajador.prototype.constructor = Trabajador;
-function Ingeniero(nombre) {
-  Trabajador.call(this, nombre);
-
-  this.LenguajeProgramacion = "";
-  this.departamento = "Ingeniería";
+class Ingeniero extends Trabajador {
+  constructor(nombre) {
+    super(nombre);
+    this.LenguajeProgramacion = "";
+    this.departamento = "Ingeniería";
+  }
 }
-Ingeniero.prototype = new Trabajador();
-Ingeniero.prototype.constructor = Ingeniero;
-var director1 = new Director("Pepito");
-var director2 = new Director("Manolo");
-var director3 = new Director("Juan");
+const director1 = new Director("Pepito");
+const director2 = new Director("Juan");
+const director3 = new Director("Marta");
 director2.informes.push("Informe del director1.");
 director2.informes.push("Informe del director2.");
 director2.informes.push("Informe del director3.");
 director3.informes.push("Informe del director4.");
-var ingeniero1 = new Ingeniero("Maria");
-var ingeniero2 = new Ingeniero("Pepa");
-var ingeniero3 = new Ingeniero("Denise");
-var ingeniero4 = new Ingeniero("Javier");
+
+const ingeniero1 = new Ingeniero("Denise");
+const ingeniero2 = new Ingeniero("Pablo");
+const ingeniero3 = new Ingeniero("Paco");
+const ingeniero4 = new Ingeniero("Paca");
 ingeniero1.LenguajeProgramacion = "C++";
 ingeniero2.LenguajeProgramacion = "Java";
 ingeniero3.LenguajeProgramacion = "JavaScript";
 ingeniero4.LenguajeProgramacion = "HTML";
-var directores = [director1, director2, director3];
+
+const directores = [director1, director2, director3];
 document.write(
   "<br /><br />--------------********* NOMBRES DIRECTORES *********-------------"
 );
