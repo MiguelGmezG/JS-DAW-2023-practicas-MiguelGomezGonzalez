@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Display a map</title>
+    <script src="https://cdn.maptiler.com/maptiler-sdk-js/v1.1.1/maptiler-sdk.umd.min.js"></script>
+    <link
+      href="https://cdn.maptiler.com/maptiler-sdk-js/v1.1.1/maptiler-sdk.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        width: 50%;
+        height: 400px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        overflow: hidden;
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      maptilersdk.config.apiKey = "pjxBYio5JxyFgXEWcQtd";
+      const map = new maptilersdk.Map({
+        container: "map",
+        style: "satellite",
+        center: [0, 0],
+        zoom: 1,
+      });
+
+      let marker;
+
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function (position) {
+            const x = position.coords.latitude;
+            const y = position.coords.longitude;
+
+            map.setCenter([y, x]);
+            map.setZoom(13.7);
+
+            if (marker) {
+              marker.setLngLat([y, x]);
+            } else {
+              marker = new maptilersdk.Marker()
+                .setLngLat([y, x])
+                .addTo(map);
+            }
+          });
+        }
+      }
+
+      getLocation();
+    </script>
+  </body>
+</html>
+
+
