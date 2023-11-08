@@ -43,7 +43,7 @@ class AlumnoDaw {
   }
 }
 
-const alumno = new AlumnoDaw("Juan", "Pérez", "juan@example.com", 25);
+const alumno = new AlumnoDaw("Manolo", "Gomez", "manolo@afasdfa.com", 45);
 
 console.log("Nombre:", alumno.nombre);
 console.log("Apellido:", alumno.apellido);
@@ -52,7 +52,7 @@ console.log("Edad:", alumno.edad);
 
 alumno.nombre = "Luis";
 alumno.apellido = "Gómez";
-alumno.email = "luis@example.com";
+alumno.email = "luis@agdadsga.com";
 alumno.edad = 30;
 
 console.log("Nombre modificado:", alumno.nombre);
