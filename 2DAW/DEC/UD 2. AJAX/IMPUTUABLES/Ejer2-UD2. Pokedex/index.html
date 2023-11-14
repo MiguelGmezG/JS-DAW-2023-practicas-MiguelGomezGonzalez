@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokémon Viewer</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    table, th, td {
+      border: 1px solid black;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    img {
+      max-width: 100px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    #pagination {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Pokémon List</h1>
+  <div>
+    <label for="perPage">Mostrar:</label>
+    <select id="perPage" onchange="updatePageSize()">
+      <option value="10">10</option>
+      <option value="20" selected>20</option>
+      <option value="30">30</option>
+    </select>
+  </div>
+  <div id="pokemonTableContainer"></div>
+  <div id="pagination">
+    <button id="prevButton" onclick="changePage(-1)">Anterior</button>
+    <span id="currentPage">1</span>
+    <button id="nextButton" onclick="changePage(1)">Siguiente</button>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
+
