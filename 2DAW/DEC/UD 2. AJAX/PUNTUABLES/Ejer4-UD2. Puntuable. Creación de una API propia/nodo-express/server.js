@@ -1,8 +1,7 @@
-// Crear aplicación Express
 var express = require("express");
 var app = express();
 var db = require("./database");
-var md5 = require("md5");
+var crypto = require("crypto-js");
 
 var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -10,6 +9,7 @@ app.use(bodyParser.json());
 
 // Puerto del servidor
 var HTTP_PORT = 8000;
+
 // Iniciar servidor
 app.listen(HTTP_PORT, () => {
     console.log("Servidor corriendo en el puerto %PORT%".replace("%PORT%", HTTP_PORT));
@@ -62,7 +62,7 @@ app.use(function (req, res) {
 });
 
 // Crear un nuevo usuario
-app.post("/api/user/", (req, res, next) => {
+app.post("/api/user/", async (req, res, next) => {
     var errores = [];
     if (!req.body.password) {
         errores.push("No se especificó contraseña");
@@ -74,24 +74,39 @@ app.post("/api/user/", (req, res, next) => {
         res.status(400).json({ "error": errores.join(", ") });
         return;
     }
-    var data = {
-        name: req.body.name,
-        email: req.body.email,
-        password: md5(req.body.password)
-    };
-    var sql = 'INSERT INTO user (name, email, password) VALUES (?,?,?)';
-    var params = [data.name, data.email, data.password];
-    db.run(sql, params, function (err, result) {
-        if (err) {
-            res.status(500).json({ "error": err.message });
-            return;
-        }
+
+    try {
+        // Use SHA-512 for password hashing
+        const hashedPassword = crypto.SHA512(req.body.password).toString(crypto.enc.Hex);
+
+        var data = {
+            name: req.body.name,
+            email: req.body.email,
+            password: hashedPassword,
+        };
+
+        var sql = 'INSERT INTO user (name, email, password) VALUES (?,?,?)';
+        var params = [data.name, data.email, data.password];
+
+        await new Promise((resolve, reject) => {
+            db.run(sql, params, function (err, result) {
+                if (err) {
+                    reject(err);
+                    return;
+                }
+
+                resolve();
+            });
+        });
+
         res.json({
             "mensaje": "éxito",
             "data": data,
             "id": this.lastID
         });
-    });
+    } catch (error) {
+        res.status(500).json({ "error": error.message });
+    }
 });
 
 // Actualizar un usuario por ID
@@ -99,8 +114,9 @@ app.patch("/api/user/:id", (req, res, next) => {
     var data = {
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password ? md5(req.body.password) : null
+        password: req.body.password ? crypto.SHA512(req.body.password).toString(crypto.enc.Hex) : null
     };
+
     db.run(
         `UPDATE user SET 
            name = COALESCE(?,name), 
@@ -142,3 +158,10 @@ app.delete("/api/user/:id", (req, res, next) => {
             res.json({ "mensaje": "eliminado", "changes": this.changes });
         });
 });
+
+function isValidEmail(email) {
+    // Add your email validation logic here
+    return true;
+}
+
+module.exports = db;
