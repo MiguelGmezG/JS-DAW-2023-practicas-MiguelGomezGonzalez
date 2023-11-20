@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reproductor Multimedia</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="reproductor">
+      <audio id="myAudio" controls autoplay muted>
+        <source src="" type="audio/mp3" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+
+      <select id="canciones">
+        <option value="canciones/cancion1.mp3">Changes (Acid Radio Mix)</option>
+        <option value="canciones/cancion2.mp3">
+          Jaded - Welcome To The People (Extended Mix)
+        </option>
+        <option value="canciones/cancion3.mp3">Techno Nights</option>
+        <option value="canciones/cancion4.mp3">The 10th Victim</option>
+      </select>
+
+      <input type="range" id="progressBar" value="0" step="0.01" />
+
+      <div class="controls">
+        <i id="retrocederBtn" class="fas fa-backward"></i>
+        <i id="reproducirPausarBtn" class="fas fa-play"></i>
+        <i id="avanzarBtn" class="fas fa-forward"></i>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

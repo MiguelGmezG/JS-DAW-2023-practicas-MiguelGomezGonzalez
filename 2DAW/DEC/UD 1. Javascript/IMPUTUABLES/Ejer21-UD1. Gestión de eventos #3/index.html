@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Validación de Formulario</title>
+    <style>
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        #error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <h1>Formulario de Validación</h1>
+    <form>
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required>
+
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="button" onclick="enviarFormulario()">Enviar</button>
+
+        <p id="error-message"></p>
+    </form>
+</body>
+</html>

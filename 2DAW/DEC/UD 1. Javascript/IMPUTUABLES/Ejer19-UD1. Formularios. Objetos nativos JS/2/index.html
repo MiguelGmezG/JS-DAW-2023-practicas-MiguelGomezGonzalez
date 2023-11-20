@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Diferencia en Días</title>
+</head>
+<body>
+    <script>
+        var fechaNacimiento = prompt("¿En qué día naciste? (Formato: YYYY/MM/DD)");
+        var fechaNacimientoObj = new Date(fechaNacimiento);
+        var fechaActual = new Date();
+        var diferenciaEnMilisegundos = fechaActual - fechaNacimientoObj;
+        var diferenciaEnDias = Math.floor(diferenciaEnMilisegundos / (1000 * 60 * 60 * 24));
+        alert("La diferencia entre tu fecha de nacimiento y la fecha actual es de " + diferenciaEnDias + " días.");
+    </script>
+</body>
+</html>

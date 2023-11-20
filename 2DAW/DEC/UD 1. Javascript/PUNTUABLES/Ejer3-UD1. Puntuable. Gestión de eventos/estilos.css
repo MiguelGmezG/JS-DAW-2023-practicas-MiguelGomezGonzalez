@@ -1,0 +1,33 @@
+div {
+    border: 1px solid black;
+    padding: 1em;
+    position: fixed;
+    top: 20px;
+    width: 200px;
+    height: 100px;
+    cursor: pointer;
+}
+
+#capa1 {
+    left: 50px;
+}
+
+#capa2 {
+    left: 400px;
+    background-color: white;
+    color: black;
+}
+
+#capa2.dropping {
+    background-color: red;
+    color: white;
+    border-style: dashed;
+}
+
+.draggable {
+    opacity: 1;
+}
+
+.dragging {
+    opacity: 0.5;
+}
